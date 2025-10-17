@@ -1,0 +1,4 @@
+couchdb
+ollama
+PyMuPDF
+dotenv
