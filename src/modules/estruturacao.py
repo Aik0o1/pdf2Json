@@ -1,12 +1,9 @@
 import ollama
 import json
-import fitz  # PyMuPDF
+import fitz  
 import os
 from modules.config import salvarNoBanco
 import uuid 
-
-import fitz  # PyMuPDF
-import os
 from io import BytesIO
 
 def extrair_texto_pdf(arquivo):
@@ -29,9 +26,6 @@ def extrair_texto_pdf(arquivo):
         print(f"Erro ao ler o PDF: {e}")
         return None
 
-
-nome_arquivo_pdf = "./documentos/0197359.pdf" 
-nome_arquivo_saida = "./jsons/resultado_ia.json"
 
 def extrair_dados_estruturados(arquivo):
     texto_documento = extrair_texto_pdf(arquivo)
