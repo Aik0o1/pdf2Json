@@ -12,10 +12,19 @@ db_name = "dados_documentos"
 db = couch[db_name]
 print(db)
 
-for doc_id in db:
-    doc = db[doc_id]
-    print(doc)
 
-def salvarNoBanco(id, doc):
-    db[id] = doc
-    print(f"✅ Documento salvo no CouchDB com id '{id}'")
+def salvarNoBanco(id, dados_documento):
+    if id in db:
+        doc = db[id]
+        print(f" Documento existente encontrado: {id}")
+    else:
+        doc = {"_id": id}
+
+    doc["documento"] = dados_documento
+    
+
+    db.save(doc)
+    print(f"✅ Documento salvo no CouchDB com id {id}")
+
+
+
