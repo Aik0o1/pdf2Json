@@ -27,4 +27,8 @@ def salvarNoBanco(id, dados_documento):
     print(f"✅ Documento salvo no CouchDB com id {id}")
 
 
+def listarDocs():
+    return db
 
+def retornarConteudoDoc(id):
+    return db[id]
