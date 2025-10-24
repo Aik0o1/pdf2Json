@@ -16,21 +16,21 @@ with abas[0]:
         accept_multiple_files=True,
         type="pdf"
     )
+    if st.button("Processar Documentos"):
+        if arquivos:
+            progresso = st.progress(0)
+            total = len(arquivos)
+            for i, arquivo in enumerate(arquivos, start=1):
+                with st.expander(f"{arquivo.name}"):
+                    st.info("Processando documento...")
+                    extrair_dados_estruturados(arquivo)
+                    st.success(f"✅ {arquivo.name} processado com sucesso!")
 
-    if arquivos:
-        progresso = st.progress(0)
-        total = len(arquivos)
-        for i, arquivo in enumerate(arquivos, start=1):
-            with st.expander(f"{arquivo.name}"):
-                st.info("Processando documento...")
-                extrair_dados_estruturados(arquivo)
-                st.success(f"✅ {arquivo.name} processado com sucesso!")
+                arquivo.close()
+                del arquivo
+                progresso.progress(i / total)
 
-            arquivo.close()
-            del arquivo
-            progresso.progress(i / total)
-
-        st.success("Todos os documentos foram processados!")
+            st.success("Todos os documentos foram processados!")
 
 # Aba 2
 with abas[1]:
